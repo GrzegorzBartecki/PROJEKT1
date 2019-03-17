@@ -30,7 +30,7 @@ namespace laborka_6._1
         {
             _wysokosc = kopiaUrzadzenia._wysokosc;
             _dlugosc = kopiaUrzadzenia._dlugosc;
-            _glebokosc = kopiaUrzadzenia._glebokosc;
+            _glebokosc = kopiaUrzadzenia._glebokosc;//komentarz ktorgo nie by≈Ço
         }
 
         public int Dlugosc
@@ -148,16 +148,16 @@ namespace laborka_6._1
         public void PokazStatusPiekarnika()
         {
             Console.WriteLine("wysokosc piekarnika:\t" + _wysokosc);
-            Console.WriteLine("d≥ugosc piekarnika:\t" + _dlugosc);
-            Console.WriteLine("g≥ÍbokoúÊ piekarnika:\t" + _glebokosc);
+            Console.WriteLine("d≈Çugosc piekarnika:\t" + _dlugosc);
+            Console.WriteLine("g≈Çƒôboko≈õƒá piekarnika:\t" + _glebokosc);
             Console.WriteLine("Status:\t" );
-            if (_on_off == true) Console.WriteLine("PIECZENIE W TOKU"); else Console.WriteLine("WY£•CZONA");
+            if (_on_off == true) Console.WriteLine("PIECZENIE W TOKU"); else Console.WriteLine("WY≈ÅƒÑCZONA");
             Console.WriteLine("temperatura :\t" + _termostat._temperatura);
-            Console.WriteLine("czas pracy :\t" + _termostat._timer.GetCzas());//metoda od uøycia atrybutu chronionego
+            Console.WriteLine("czas pracy :\t" + _termostat._timer.GetCzas());//metoda od u≈ºycia atrybutu chronionego
             Console.WriteLine("ustawienie Programatora :\t" + _auto.auto0);
             Console.WriteLine("funkcja termoobieg:\t" + _termoobieg);
-            Console.WriteLine("funkcja grza≥ka gÛrna:\t" + _grzalka_gorna);
-            Console.WriteLine("funkcja grza≥ka dolna:\t" + _grzalka_dolna);
+            Console.WriteLine("funkcja grza≈Çka g√≥rna:\t" + _grzalka_gorna);
+            Console.WriteLine("funkcja grza≈Çka dolna:\t" + _grzalka_dolna);
             Console.WriteLine("funkcja czyszczenie:\t" + _czyszczenie);
             Console.WriteLine("marka piekarnika:\t" + _marka);
         }
@@ -218,7 +218,7 @@ namespace laborka_6._1
                 public void SetCzas(int czas) { _czas = czas; }
                 public void Test()
                 {
-                    Console.WriteLine("coú tam ");
+                    Console.WriteLine("co≈õ tam ");
                 }
             }
         }
@@ -311,7 +311,7 @@ namespace laborka_6._1
             Console.WriteLine("szerokosc zmywarki:\t" + _szerokosc_mikrofali);
             Console.WriteLine("klasa energetyczna:\t" + _klasa_energetyczna);
             Console.WriteLine("kolor zmywarki:\t" + _kolor_mikrofali);
-            Console.WriteLine("czy jest wlπczona?:\t" + _on_off);
+            Console.WriteLine("czy jest wlƒÖczona?:\t" + _on_off);
             Console.WriteLine("maksymalna moc:\t" + _moc_max_vat);
             Console.WriteLine("program podgrzewanie:\t" + _program._podgrzewanie);
             Console.WriteLine("program podgrzewanie:\t" + _program._rozmrazanie);
@@ -353,7 +353,7 @@ namespace laborka_6._1
   {
         static void Main(string[] args)
         {
-            Console.WriteLine(" program sterujπcy pracπ piekanika i mikrofalÛwki ");
+            Console.WriteLine(" program sterujƒÖcy pracƒÖ piekanika i mikrofal√≥wki ");
             Piekarnik mojpiekarnik = new Piekarnik();
             Mikrofalowka mojamikrofala = new Mikrofalowka();
             Piekarnik mojpiekarnik1 = new Piekarnik(100, 100, 100, "Amica", "A", false, new Piekarnik.Termostat(1045, new Piekarnik.Termostat.Timer(5)),
@@ -364,9 +364,9 @@ namespace laborka_6._1
             //Piekarnik.Programator A = new Piekarnik.Programator();
             ////int time=10;
             //CzasPracy();
-            //Console.WriteLine(" program sterujπcy pracπ piekanika i mikrofalÛwki "+ mojpiekarnik._auto.auto0);
+            //Console.WriteLine(" program sterujƒÖcy pracƒÖ piekanika i mikrofal√≥wki "+ mojpiekarnik._auto.auto0);
             //mojpiekarnik._auto.auto0 = mojpiekarnik._auto.auto0 + 1;
-            //Console.WriteLine(" program sterujπcy pracπ piekanika i mikrofalÛwki " + mojpiekarnik._auto.auto0);
+            //Console.WriteLine(" program sterujƒÖcy pracƒÖ piekanika i mikrofal√≥wki " + mojpiekarnik._auto.auto0);
 
             //mojpiekarnik1.PokazStatusPiekarnika();
 
@@ -374,7 +374,7 @@ namespace laborka_6._1
             //int a = 10;
             ////mojpiekarnik1._Temperatura(10);
             ////Piekarnik::Termostat _Termostat(10);
-            //Console.WriteLine("w≥πcz");
+            //Console.WriteLine("w≈ÇƒÖcz");
             //mojpiekarnik.On_Off=mojpiekarnik.Uruchom();
 
             ////mojpiekarnik1.Termoobieg();
@@ -384,7 +384,7 @@ namespace laborka_6._1
             //Console.WriteLine("-----------------------------------------------------------------\npiekarnik 3 kopia z 1");
             //Piekarnik mojpiekanik2 = new Piekarnik(mojpiekarnik);
             //mojpiekanik2.PokazStatusPiekarnika();
-            //Console.WriteLine("-----------------------------------------------------------------\npiekarnik 4 kopia z 2 z wyjπtkiem marki");
+            //Console.WriteLine("-----------------------------------------------------------------\npiekarnik 4 kopia z 2 z wyjƒÖtkiem marki");
 
             //mojpiekanik2.Uruchom();
             //mojpiekanik2.PokazStatusPiekarnika();
@@ -395,7 +395,7 @@ namespace laborka_6._1
             //Console.WriteLine("-----------------------------------------------------------------");
 
 
-            Console.WriteLine("Naciúnij dowolny klawisz, by zakoÒczyÊ program.");
+            Console.WriteLine("Naci≈õnij dowolny klawisz, by zako≈Ñczyƒá program.");
 
             Console.ReadKey();
         }
@@ -421,8 +421,8 @@ namespace laborka_6._1
             do
             {
                 Console.WriteLine(" wybierz z menu: ");
-                Console.WriteLine(" < 1 > -obs≥uga  piekarnika ");
-                Console.WriteLine(" < 2 > -obs≥uga mikrofali ");
+                Console.WriteLine(" < 1 > -obs≈Çuga  piekarnika ");
+                Console.WriteLine(" < 2 > -obs≈Çuga mikrofali ");
                 Console.WriteLine(" < 3 > -puste ");
                 Console.WriteLine(" < 4 > -status ");
                 Console.WriteLine(" < 5 > -zmiany");
@@ -451,35 +451,35 @@ namespace laborka_6._1
                                     int f;
                                     do
                                     {
-                                        Console.WriteLine("<1> wg ustawieÒ rÍcznych ");
+                                        Console.WriteLine("<1> wg ustawie≈Ñ rƒôcznych ");
                                         Console.WriteLine("<2> wg programu auto");
-                                        Console.WriteLine("<3> wyjúcie");
+                                        Console.WriteLine("<3> wyj≈õcie");
                                         f = int.Parse(Console.ReadLine());
                                         switch (f)
                                         {
                                             case 1:
 
-                                                Console.WriteLine("podaj temperaturÍ:  ");
+                                                Console.WriteLine("podaj temperaturƒô:  ");
                                                 mojpiekarnik._termostat._temperatura=(int.Parse(Console.ReadLine()));
                                                 Console.WriteLine("podaj czas pracy:  ");
                                                 mojpiekarnik._termostat._timer.SetCzas(int.Parse(Console.ReadLine()));
-                                                Console.WriteLine("w≥πcz termoobieg:  ");
+                                                Console.WriteLine("w≈ÇƒÖcz termoobieg:  ");
                                                 mojpiekarnik._termoobieg=mojpiekarnik.Uruchom();
-                                                Console.WriteLine("w≥πcz grza≥kÍ gÛrnπ i dolnπ");
+                                                Console.WriteLine("w≈ÇƒÖcz grza≈Çkƒô g√≥rnƒÖ i dolnƒÖ");
                                                 mojpiekarnik._grzalka_dolna_i_gorna = mojpiekarnik.Uruchom();
                                                 mojpiekarnik._grzalka_dolna = mojpiekarnik._grzalka_dolna_i_gorna;
                                                 mojpiekarnik._grzalka_gorna = mojpiekarnik._grzalka_dolna_i_gorna;
-                                                Console.WriteLine("wlπcz grzalke gÛrnπ  ");
+                                                Console.WriteLine("wlƒÖcz grzalke g√≥rnƒÖ  ");
                                                 mojpiekarnik._grzalka_gorna = mojpiekarnik.Uruchom();
-                                                Console.WriteLine("wlπcz grzalke dolnπ  ");
+                                                Console.WriteLine("wlƒÖcz grzalke dolnƒÖ  ");
                                                 mojpiekarnik._grzalka_dolna = mojpiekarnik.Uruchom();
-                                                Console.WriteLine("w≥πcz termoobieg:  ");
+                                                Console.WriteLine("w≈ÇƒÖcz termoobieg:  ");
                                                 mojpiekarnik._grzalka_dolna = mojpiekarnik.Uruchom();
-                                                Console.WriteLine("w≥πcz czyszczenie:  ");
+                                                Console.WriteLine("w≈ÇƒÖcz czyszczenie:  ");
                                                 mojpiekarnik._czyszczenie = mojpiekarnik.Uruchom();
-                                                Console.WriteLine("uruchomiÊ?  ");
+                                                Console.WriteLine("uruchomiƒá?  ");
                                                 mojpiekarnik._on_off = mojpiekarnik.Uruchom();
-                                                Console.WriteLine("status bieøπcy:  ");
+                                                Console.WriteLine("status bie≈ºƒÖcy:  ");
                                                 mojpiekarnik.PokazStatusPiekarnika();
                                                 CzasPracy(mojpiekarnik._termostat._timer.GetCzas());
                                                 mojpiekarnik.PokazStatusPiekarnika();
@@ -488,45 +488,45 @@ namespace laborka_6._1
                                                 int g;
                                                 do
                                                 {
-                                                    Console.WriteLine("<1> wy≥πczony");
+                                                    Console.WriteLine("<1> wy≈ÇƒÖczony");
                                                     Console.WriteLine("<2> program ciasto");
-                                                    Console.WriteLine("<3> program miÍso");
+                                                    Console.WriteLine("<3> program miƒôso");
                                                     Console.WriteLine("<3> program ryby");
                                                     Console.WriteLine("<3> program suszenie");
-                                                    Console.WriteLine("<3> program rozmraøanie");
+                                                    Console.WriteLine("<3> program rozmra≈ºanie");
                                                     Console.WriteLine("<3> program czyszczenie");
                                                     g = int.Parse(Console.ReadLine());
                                                     switch (g)
                                                     {
                                                         case 1:
 
-                                                            Console.WriteLine("podaj temperaturÍ:  ");
+                                                            Console.WriteLine("podaj temperaturƒô:  ");
                                                             mojpiekarnik._termostat._temperatura = (int.Parse(Console.ReadLine()));
                                                             Console.WriteLine("podaj czas pracy:  ");
                                                             mojpiekarnik._termostat._timer.SetCzas(int.Parse(Console.ReadLine()));
-                                                            Console.WriteLine("w≥πcz termoobieg:  ");
+                                                            Console.WriteLine("w≈ÇƒÖcz termoobieg:  ");
                                                             mojpiekarnik._termoobieg = mojpiekarnik.Uruchom();
-                                                            Console.WriteLine("w≥πcz grza≥kÍ gÛrnπ i dolnπ");
+                                                            Console.WriteLine("w≈ÇƒÖcz grza≈Çkƒô g√≥rnƒÖ i dolnƒÖ");
                                                             mojpiekarnik._grzalka_dolna_i_gorna = mojpiekarnik.Uruchom();
                                                             mojpiekarnik._grzalka_dolna = mojpiekarnik._grzalka_dolna_i_gorna;
                                                             mojpiekarnik._grzalka_gorna = mojpiekarnik._grzalka_dolna_i_gorna;
-                                                            Console.WriteLine("wlπcz grzalke gÛrnπ  ");
+                                                            Console.WriteLine("wlƒÖcz grzalke g√≥rnƒÖ  ");
                                                             mojpiekarnik._grzalka_gorna = mojpiekarnik.Uruchom();
-                                                            Console.WriteLine("wlπcz grzalke dolnπ  ");
+                                                            Console.WriteLine("wlƒÖcz grzalke dolnƒÖ  ");
                                                             mojpiekarnik._grzalka_dolna = mojpiekarnik.Uruchom();
-                                                            Console.WriteLine("w≥πcz termoobieg:  ");
+                                                            Console.WriteLine("w≈ÇƒÖcz termoobieg:  ");
                                                             mojpiekarnik._grzalka_dolna = mojpiekarnik.Uruchom();
-                                                            Console.WriteLine("w≥πcz czyszczenie:  ");
+                                                            Console.WriteLine("w≈ÇƒÖcz czyszczenie:  ");
                                                             mojpiekarnik._czyszczenie = mojpiekarnik.Uruchom();
-                                                            Console.WriteLine("uruchomiÊ?  ");
+                                                            Console.WriteLine("uruchomiƒá?  ");
                                                             mojpiekarnik._on_off = mojpiekarnik.Uruchom();
-                                                            Console.WriteLine("status bieøπcy:  ");
+                                                            Console.WriteLine("status bie≈ºƒÖcy:  ");
                                                             mojpiekarnik.PokazStatusPiekarnika();
                                                             CzasPracy(mojpiekarnik._termostat._timer.GetCzas());
                                                             mojpiekarnik.PokazStatusPiekarnika();
                                                             break;
                                                         case 2:
-                                                            //Console.WriteLine("podaj nowπ dlugoúÊ:  ");
+                                                            //Console.WriteLine("podaj nowƒÖ dlugo≈õƒá:  ");
                                                             //mojpiekarnik.Dlugosc = int.Parse(Console.ReadLine());
                                                             break;
                                                         case 3:   //default:
@@ -616,11 +616,11 @@ namespace laborka_6._1
                                         switch (e)
                                         {
                                             case 1:
-                                                Console.WriteLine("podaj nowπ wysokoúÊ oparcia");
+                                                Console.WriteLine("podaj nowƒÖ wysoko≈õƒá oparcia");
                                                 mojazmywarka.SzerokoscMikrofali = int.Parse(Console.ReadLine());
                                                 break;
                                             case 2:
-                                                Console.WriteLine("podaj nowπ wysokosc nog");
+                                                Console.WriteLine("podaj nowƒÖ wysokosc nog");
                                                 mojazmywarka.GlebokoscMikrofali = int.Parse(Console.ReadLine());
                                                 break;
                                             case 3:
@@ -640,7 +640,7 @@ namespace laborka_6._1
                                                 break;
                                         }
                                     }
-                                    while (e != 6);   //podmenu zmian w krzeúle
+                                    while (e != 6);   //podmenu zmian w krze≈õle
                                     break;
                                 case 2:
 
@@ -650,19 +650,19 @@ namespace laborka_6._1
                                     do
                                     {
                                         Console.WriteLine("<1> wysokosc stolika");
-                                        Console.WriteLine("<2> dlugoúc stolika");
+                                        Console.WriteLine("<2> dlugo≈õc stolika");
                                         Console.WriteLine("<3> symbol");
                                         Console.WriteLine("<4> kolor");
-                                        Console.WriteLine("<5> wyjúcie");
+                                        Console.WriteLine("<5> wyj≈õcie");
                                         g = int.Parse(Console.ReadLine());
                                         switch (g)
                                         {
                                             case 1:
-                                                Console.WriteLine("podaj nowπ wysokoúÊ stolika:  ");
+                                                Console.WriteLine("podaj nowƒÖ wysoko≈õƒá stolika:  ");
                                                 mojpiekarnik.NowaWysokoscPiekarnika(int.Parse(Console.ReadLine()));
                                                 break;
                                             case 2:
-                                                Console.WriteLine("podaj nowπ dlugoúÊ stolika:  ");
+                                                Console.WriteLine("podaj nowƒÖ dlugo≈õƒá stolika:  ");
                                                 mojpiekarnik.Dlugosc = int.Parse(Console.ReadLine());
                                                 break;
                                             case 3:
@@ -713,7 +713,7 @@ namespace laborka_6._1
                         } while (h != 4);
                         break;
                     case 7:
-                        Console.WriteLine("KABOOOOOOOM! Naciúnij dowolny klawisz, by zakoÒczyÊ program.");
+                        Console.WriteLine("KABOOOOOOOM! Naci≈õnij dowolny klawisz, by zako≈Ñczyƒá program.");
                         Console.ReadKey();
                         break;
                 }
