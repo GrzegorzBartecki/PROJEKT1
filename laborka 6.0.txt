@@ -1,0 +1,723 @@
+using System;
+using System.Threading;
+
+namespace laborka_6._1
+{
+    enum Funkcja { wylaczony,ciasto, mieso, ryby, suszenie,rozmrazanie,czyszczenie}
+
+
+ class Urzadzenie
+ {
+        public int _wysokosc;
+        public int _dlugosc;
+        public int _glebokosc;
+
+        public Urzadzenie()
+        {
+            _wysokosc = 50;
+            _dlugosc = 60;
+            _glebokosc = 50;
+        }
+
+        public Urzadzenie(int wysokosc, int dlugosc, int glebokosc)
+        {
+            _wysokosc = wysokosc;
+            _dlugosc = dlugosc;
+            _glebokosc = glebokosc;
+        }
+
+        public Urzadzenie(Urzadzenie kopiaUrzadzenia)
+        {
+            _wysokosc = kopiaUrzadzenia._wysokosc;
+            _dlugosc = kopiaUrzadzenia._dlugosc;
+            _glebokosc = kopiaUrzadzenia._glebokosc;
+        }
+
+        public int Dlugosc
+        {
+            get { return _dlugosc; }
+            set { _dlugosc = value; }
+        }
+
+        public int Wysokosc                    //get+set
+        {
+            get { return _wysokosc; }
+            set { _wysokosc = value; }
+        }
+
+        public int Glebokosc                    //get+set
+        {
+            get { return _glebokosc; }
+            set { _glebokosc = value; }
+        }
+ }
+
+ class Piekarnik:Urzadzenie
+ {        
+        string _marka;
+        string _klasa_energetyczna;
+        public bool _on_off;
+        public Termostat _termostat;
+        public bool _termoobieg;
+        public bool _grzalka_dolna_i_gorna;        
+        public bool _grzalka_gorna;
+        public bool _grzalka_dolna;
+        public bool _czyszczenie;
+        public Programator _auto;
+
+        public Piekarnik(int wysokosc, int dlugosc, int glebokosc, string marka, string klasa_energetyczna, bool on_off, Termostat termostat, 
+            bool termoobieg, bool grzalka_dolna_i_gorna, bool grzalka_gorna, bool grzalka_dolna, bool czyszczenie, Programator auto)
+            : base(wysokosc, dlugosc, glebokosc)
+        {
+            _marka = marka;
+            _klasa_energetyczna = klasa_energetyczna;
+            _on_off = on_off;
+            _termostat = termostat;
+            _termoobieg = termoobieg;
+            _grzalka_dolna_i_gorna = grzalka_dolna_i_gorna;
+            _grzalka_gorna = grzalka_gorna;
+            _grzalka_dolna = grzalka_dolna;
+            _czyszczenie = czyszczenie;
+            _auto = auto;
+        }
+
+        public Piekarnik()
+        {
+            _marka = "bosh";
+            _klasa_energetyczna = "AAA";
+            _on_off=false;
+            _termostat = new Termostat();
+            _termoobieg = true;
+            _grzalka_dolna_i_gorna = true;
+            _grzalka_gorna = false;
+            _grzalka_dolna = false;
+            _czyszczenie = false;
+            _auto = new Programator();
+        }     
+
+        public Piekarnik(Piekarnik WzorcowyPiekarnik)
+        {
+            
+            _on_off = WzorcowyPiekarnik._on_off;
+            _termostat._temperatura = WzorcowyPiekarnik._termostat._temperatura;
+            _termoobieg = WzorcowyPiekarnik._termoobieg;
+            _grzalka_dolna_i_gorna = WzorcowyPiekarnik._grzalka_dolna_i_gorna;
+            _grzalka_gorna = WzorcowyPiekarnik._grzalka_gorna;
+            _grzalka_dolna = WzorcowyPiekarnik._grzalka_dolna;
+            _czyszczenie = WzorcowyPiekarnik._czyszczenie;
+            _marka = WzorcowyPiekarnik._marka;
+        }
+        
+        public bool Uruchom()
+        {string a;
+            do
+            {
+                Console.WriteLine(" t/n");
+                a = Console.ReadLine();
+                
+                if ( a== "T"||a=="t")
+                {
+                    return true;
+                }
+                if (a == "N" || a == "n")
+                {
+                    return  false;
+                }
+            } while (a!= "T"&a!="t"& a != "N" & a != "n");
+            return false;
+        }                    
+
+        public bool On_Off
+        {
+            get { return _on_off; }
+            set { _on_off = value; }
+        }
+
+        public bool Termoobieg { get => _termoobieg; set => _termoobieg = value; }
+        private Programator Auto { get => _auto; set => _auto = value; }
+
+        public void NowaWysokoscPiekarnika(int nowa_wysokosc)  //set
+        {
+            _wysokosc = nowa_wysokosc;
+        }
+        public int PobierzWysokoscPiekarnika()                         //get
+        {
+            return _wysokosc;
+        }
+        
+        public void PokazStatusPiekarnika()
+        {
+            Console.WriteLine("wysokosc piekarnika:\t" + _wysokosc);
+            Console.WriteLine("d³ugosc piekarnika:\t" + _dlugosc);
+            Console.WriteLine("g³êbokoœæ piekarnika:\t" + _glebokosc);
+            Console.WriteLine("Status:\t" );
+            if (_on_off == true) Console.WriteLine("PIECZENIE W TOKU"); else Console.WriteLine("WY£¥CZONA");
+            Console.WriteLine("temperatura :\t" + _termostat._temperatura);
+            Console.WriteLine("czas pracy :\t" + _termostat._timer.GetCzas());//metoda od u¿ycia atrybutu chronionego
+            Console.WriteLine("ustawienie Programatora :\t" + _auto.auto0);
+            Console.WriteLine("funkcja termoobieg:\t" + _termoobieg);
+            Console.WriteLine("funkcja grza³ka górna:\t" + _grzalka_gorna);
+            Console.WriteLine("funkcja grza³ka dolna:\t" + _grzalka_dolna);
+            Console.WriteLine("funkcja czyszczenie:\t" + _czyszczenie);
+            Console.WriteLine("marka piekarnika:\t" + _marka);
+        }
+
+        public class Programator
+
+        {
+            public Funkcja auto0;
+            
+
+
+            public Programator()
+            {
+            auto0 = Funkcja.wylaczony;            
+            }              
+
+            public Programator(Funkcja auto0)
+            {
+            this.auto0 = auto0;          
+            }
+        }
+         
+        public class Termostat
+        {
+            public int _temperatura;
+            public Timer _timer;
+
+            public Termostat(int temperatura, Timer timer) : this(temperatura)
+            {
+                _timer = timer;
+            }
+
+            public Termostat()
+            {
+                _temperatura = 100;
+                _timer = new Timer();
+            }
+            public Termostat(int temperatura)
+            {
+                _temperatura = temperatura;
+            }
+
+
+            public class Timer
+            {
+                int _czas;
+                public Timer()
+                {
+                    _czas = 5;
+                }
+
+                public Timer(int czas)
+                {
+                    _czas = czas;
+                }
+                
+                public int GetCzas() { return _czas; }
+                public void SetCzas(int czas) { _czas = czas; }
+                public void Test()
+                {
+                    Console.WriteLine("coœ tam ");
+                }
+            }
+        }
+ }
+ class Mikrofalowka
+ {
+        public
+        string _marka;
+        int _wysokosc_mikrofali;
+        int _glebokosc_mikrofali;
+        int _szerokosc_mikrofali;
+        string _klasa_energetyczna;
+        ConsoleColor _kolor_mikrofali;
+        bool _on_off;
+        int _moc_max_vat;
+        bool _podgrzewanie;
+        bool _rozmrazanie;
+        bool _grill;
+        bool _combi;
+        enum _program { _podgrzewanie, _rozmrazanie, _grill, _combi }
+        public Mikrofalowka()
+        {
+            _marka = "Amica";
+            _wysokosc_mikrofali = 30;
+            _glebokosc_mikrofali = 50;
+            _szerokosc_mikrofali = 60;
+            _klasa_energetyczna = "AAA+";
+            _kolor_mikrofali = ConsoleColor.Black;
+            _on_off = false;
+            _moc_max_vat = 1000;
+            _podgrzewanie = true;
+            _rozmrazanie = true;
+            _grill = false;
+            _combi = false;
+        }
+        public Mikrofalowka(string marka, int wysokosc_mikrofali, int glebokosc_mikrofali, int szerokosc_mikrofali,
+                            string klasa_energetyczna, ConsoleColor kolor_mikrofali, bool on_off, int moc_max_vat,
+                            bool podgrzewanie, bool rozmrazanie, bool grill, bool combi)
+        {
+            _marka = marka;
+            _wysokosc_mikrofali = wysokosc_mikrofali;
+            _glebokosc_mikrofali = glebokosc_mikrofali;
+            _szerokosc_mikrofali = szerokosc_mikrofali;
+            _klasa_energetyczna = klasa_energetyczna;
+            _kolor_mikrofali = kolor_mikrofali;
+            _on_off = on_off;
+            _moc_max_vat = moc_max_vat;
+            _podgrzewanie = podgrzewanie;
+            _rozmrazanie = rozmrazanie;
+            _grill = grill;
+            _combi = combi;
+        }
+
+        public Mikrofalowka(Mikrofalowka KopiowanaMikrofala)
+        {
+            _marka = KopiowanaMikrofala._marka;
+            _wysokosc_mikrofali = KopiowanaMikrofala._wysokosc_mikrofali;
+            _glebokosc_mikrofali = KopiowanaMikrofala._glebokosc_mikrofali;
+            _szerokosc_mikrofali = KopiowanaMikrofala._szerokosc_mikrofali;
+            _klasa_energetyczna = KopiowanaMikrofala._klasa_energetyczna;
+            _kolor_mikrofali = KopiowanaMikrofala._kolor_mikrofali;
+            _on_off = KopiowanaMikrofala._on_off;
+            _moc_max_vat = KopiowanaMikrofala._moc_max_vat;
+            _podgrzewanie = KopiowanaMikrofala._podgrzewanie;
+            _rozmrazanie = KopiowanaMikrofala._rozmrazanie;
+            _grill = KopiowanaMikrofala._grill;
+            _combi = KopiowanaMikrofala._combi;
+        }
+        public Mikrofalowka(string marka, int wysokosc_mikrofali, int glebokosc_mikrofali,
+                            int szerokosc_mikrofali, Mikrofalowka KopiowanaMikrofala)
+        {
+            _marka = marka;
+            _wysokosc_mikrofali = wysokosc_mikrofali;
+            _glebokosc_mikrofali = glebokosc_mikrofali;
+            _szerokosc_mikrofali = szerokosc_mikrofali;
+            _klasa_energetyczna = KopiowanaMikrofala._klasa_energetyczna;
+            _kolor_mikrofali = KopiowanaMikrofala._kolor_mikrofali;
+            _on_off = KopiowanaMikrofala._on_off;
+            _moc_max_vat = KopiowanaMikrofala._moc_max_vat;
+            _podgrzewanie = KopiowanaMikrofala._podgrzewanie;
+            _rozmrazanie = KopiowanaMikrofala._rozmrazanie;
+            _grill = KopiowanaMikrofala._grill;
+            _combi = KopiowanaMikrofala._combi;
+        }
+
+        public void PokazStatusMikrofali()
+        {
+            Console.WriteLine("wysokosc zmywarki:\t" + _wysokosc_mikrofali);
+            Console.WriteLine("glebokosc zmywarki:\t" + _glebokosc_mikrofali);
+            Console.WriteLine("szerokosc zmywarki:\t" + _szerokosc_mikrofali);
+            Console.WriteLine("klasa energetyczna:\t" + _klasa_energetyczna);
+            Console.WriteLine("kolor zmywarki:\t" + _kolor_mikrofali);
+            Console.WriteLine("czy jest wl¹czona?:\t" + _on_off);
+            Console.WriteLine("maksymalna moc:\t" + _moc_max_vat);
+            Console.WriteLine("program podgrzewanie:\t" + _program._podgrzewanie);
+            Console.WriteLine("program podgrzewanie:\t" + _program._rozmrazanie);
+            Console.WriteLine("program podgrzewanie:\t" + _program._combi);
+            Console.WriteLine("program podgrzewanie:\t" + _program._grill);
+        }
+        public int WysokoscMikrofali
+        {
+            get { return _wysokosc_mikrofali; }
+            set { _wysokosc_mikrofali = value; }
+        }
+        public int GlebokoscMikrofali
+        {
+            get { return _glebokosc_mikrofali; }
+            set { _glebokosc_mikrofali = value; }
+        }
+        public int SzerokoscMikrofali
+        {
+            get { return _szerokosc_mikrofali; }
+            set
+            {
+                _szerokosc_mikrofali = value;
+            }
+        }
+        public string KlasaEnergetyczna
+        {
+            get { return _klasa_energetyczna; }
+            set { _klasa_energetyczna = value; }
+        }
+        public ConsoleColor KolorMikrofali
+        {
+            get { return _kolor_mikrofali; }
+            set { _kolor_mikrofali = value; }
+        }
+
+ }
+
+  class Program
+  {
+        static void Main(string[] args)
+        {
+            Console.WriteLine(" program steruj¹cy prac¹ piekanika i mikrofalówki ");
+            Piekarnik mojpiekarnik = new Piekarnik();
+            Mikrofalowka mojamikrofala = new Mikrofalowka();
+            Piekarnik mojpiekarnik1 = new Piekarnik(100, 100, 100, "Amica", "A", false, new Piekarnik.Termostat(1045, new Piekarnik.Termostat.Timer(5)),
+                false, false, false, false, false, new Piekarnik.Programator(Funkcja.wylaczony));
+            menu(mojamikrofala,mojpiekarnik);
+
+
+            //Piekarnik.Programator A = new Piekarnik.Programator();
+            ////int time=10;
+            //CzasPracy();
+            //Console.WriteLine(" program steruj¹cy prac¹ piekanika i mikrofalówki "+ mojpiekarnik._auto.auto0);
+            //mojpiekarnik._auto.auto0 = mojpiekarnik._auto.auto0 + 1;
+            //Console.WriteLine(" program steruj¹cy prac¹ piekanika i mikrofalówki " + mojpiekarnik._auto.auto0);
+
+            //mojpiekarnik1.PokazStatusPiekarnika();
+
+
+            //int a = 10;
+            ////mojpiekarnik1._Temperatura(10);
+            ////Piekarnik::Termostat _Termostat(10);
+            //Console.WriteLine("w³¹cz");
+            //mojpiekarnik.On_Off=mojpiekarnik.Uruchom();
+
+            ////mojpiekarnik1.Termoobieg();
+            ////mojpiekarnik1.On_Off = bool.Parse(Console.ReadLine());
+            ////mojpiekarnik1.On_Off = true;
+            //mojpiekarnik.PokazStatusPiekarnika();
+            //Console.WriteLine("-----------------------------------------------------------------\npiekarnik 3 kopia z 1");
+            //Piekarnik mojpiekanik2 = new Piekarnik(mojpiekarnik);
+            //mojpiekanik2.PokazStatusPiekarnika();
+            //Console.WriteLine("-----------------------------------------------------------------\npiekarnik 4 kopia z 2 z wyj¹tkiem marki");
+
+            //mojpiekanik2.Uruchom();
+            //mojpiekanik2.PokazStatusPiekarnika();
+            //Console.WriteLine("oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+
+            //mojamikrofala.PokazStatusMikrofali();
+
+            //Console.WriteLine("-----------------------------------------------------------------");
+
+
+            Console.WriteLine("Naciœnij dowolny klawisz, by zakoñczyæ program.");
+
+            Console.ReadKey();
+        }
+
+        private static void CzasPracy(int a)
+        {
+
+            TimeSpan interval = new TimeSpan(0, 0, 1);
+            
+            Console.WriteLine("status pralki/czas pracy:" + a);
+            //int a = timer;
+            for (int i = 0; i < a; i++)
+            {
+                //Console.WriteLine("CZAS PRANIA:"+a--);
+                Thread.Sleep(interval);
+                
+            }
+        }
+        
+        private static void menu(Mikrofalowka mojazmywarka, Piekarnik mojpiekarnik)
+        {
+            int a;
+            do
+            {
+                Console.WriteLine(" wybierz z menu: ");
+                Console.WriteLine(" < 1 > -obs³uga  piekarnika ");
+                Console.WriteLine(" < 2 > -obs³uga mikrofali ");
+                Console.WriteLine(" < 3 > -puste ");
+                Console.WriteLine(" < 4 > -status ");
+                Console.WriteLine(" < 5 > -zmiany");
+                Console.WriteLine(" < 6 > -puste");
+                Console.WriteLine(" < 7 > -wyjscie ");
+
+                a = Int32.Parse(Console.ReadLine());
+                switch (a)
+                {
+                    case 1:
+                        int b = 0;
+                        do
+                        {
+                            Console.WriteLine(" podmenu piekarnik: ");
+                            Console.WriteLine(" < 1 > -status piekarnika ");
+                            Console.WriteLine(" < 2 > -uruchom ");
+                            Console.WriteLine(" < 3 > -wyjscie ");
+                            b = Int32.Parse(Console.ReadLine());
+                            switch (b)
+                            {
+                                case 1:
+                                    mojpiekarnik.PokazStatusPiekarnika();
+                                    break;                                
+                                    
+                                case 2:
+                                    int f;
+                                    do
+                                    {
+                                        Console.WriteLine("<1> wg ustawieñ rêcznych ");
+                                        Console.WriteLine("<2> wg programu auto");
+                                        Console.WriteLine("<3> wyjœcie");
+                                        f = int.Parse(Console.ReadLine());
+                                        switch (f)
+                                        {
+                                            case 1:
+
+                                                Console.WriteLine("podaj temperaturê:  ");
+                                                mojpiekarnik._termostat._temperatura=(int.Parse(Console.ReadLine()));
+                                                Console.WriteLine("podaj czas pracy:  ");
+                                                mojpiekarnik._termostat._timer.SetCzas(int.Parse(Console.ReadLine()));
+                                                Console.WriteLine("w³¹cz termoobieg:  ");
+                                                mojpiekarnik._termoobieg=mojpiekarnik.Uruchom();
+                                                Console.WriteLine("w³¹cz grza³kê górn¹ i doln¹");
+                                                mojpiekarnik._grzalka_dolna_i_gorna = mojpiekarnik.Uruchom();
+                                                mojpiekarnik._grzalka_dolna = mojpiekarnik._grzalka_dolna_i_gorna;
+                                                mojpiekarnik._grzalka_gorna = mojpiekarnik._grzalka_dolna_i_gorna;
+                                                Console.WriteLine("wl¹cz grzalke górn¹  ");
+                                                mojpiekarnik._grzalka_gorna = mojpiekarnik.Uruchom();
+                                                Console.WriteLine("wl¹cz grzalke doln¹  ");
+                                                mojpiekarnik._grzalka_dolna = mojpiekarnik.Uruchom();
+                                                Console.WriteLine("w³¹cz termoobieg:  ");
+                                                mojpiekarnik._grzalka_dolna = mojpiekarnik.Uruchom();
+                                                Console.WriteLine("w³¹cz czyszczenie:  ");
+                                                mojpiekarnik._czyszczenie = mojpiekarnik.Uruchom();
+                                                Console.WriteLine("uruchomiæ?  ");
+                                                mojpiekarnik._on_off = mojpiekarnik.Uruchom();
+                                                Console.WriteLine("status bie¿¹cy:  ");
+                                                mojpiekarnik.PokazStatusPiekarnika();
+                                                CzasPracy(mojpiekarnik._termostat._timer.GetCzas());
+                                                mojpiekarnik.PokazStatusPiekarnika();
+                                                break;
+                                            case 2:
+                                                int g;
+                                                do
+                                                {
+                                                    Console.WriteLine("<1> wy³¹czony");
+                                                    Console.WriteLine("<2> program ciasto");
+                                                    Console.WriteLine("<3> program miêso");
+                                                    Console.WriteLine("<3> program ryby");
+                                                    Console.WriteLine("<3> program suszenie");
+                                                    Console.WriteLine("<3> program rozmra¿anie");
+                                                    Console.WriteLine("<3> program czyszczenie");
+                                                    g = int.Parse(Console.ReadLine());
+                                                    switch (g)
+                                                    {
+                                                        case 1:
+
+                                                            Console.WriteLine("podaj temperaturê:  ");
+                                                            mojpiekarnik._termostat._temperatura = (int.Parse(Console.ReadLine()));
+                                                            Console.WriteLine("podaj czas pracy:  ");
+                                                            mojpiekarnik._termostat._timer.SetCzas(int.Parse(Console.ReadLine()));
+                                                            Console.WriteLine("w³¹cz termoobieg:  ");
+                                                            mojpiekarnik._termoobieg = mojpiekarnik.Uruchom();
+                                                            Console.WriteLine("w³¹cz grza³kê górn¹ i doln¹");
+                                                            mojpiekarnik._grzalka_dolna_i_gorna = mojpiekarnik.Uruchom();
+                                                            mojpiekarnik._grzalka_dolna = mojpiekarnik._grzalka_dolna_i_gorna;
+                                                            mojpiekarnik._grzalka_gorna = mojpiekarnik._grzalka_dolna_i_gorna;
+                                                            Console.WriteLine("wl¹cz grzalke górn¹  ");
+                                                            mojpiekarnik._grzalka_gorna = mojpiekarnik.Uruchom();
+                                                            Console.WriteLine("wl¹cz grzalke doln¹  ");
+                                                            mojpiekarnik._grzalka_dolna = mojpiekarnik.Uruchom();
+                                                            Console.WriteLine("w³¹cz termoobieg:  ");
+                                                            mojpiekarnik._grzalka_dolna = mojpiekarnik.Uruchom();
+                                                            Console.WriteLine("w³¹cz czyszczenie:  ");
+                                                            mojpiekarnik._czyszczenie = mojpiekarnik.Uruchom();
+                                                            Console.WriteLine("uruchomiæ?  ");
+                                                            mojpiekarnik._on_off = mojpiekarnik.Uruchom();
+                                                            Console.WriteLine("status bie¿¹cy:  ");
+                                                            mojpiekarnik.PokazStatusPiekarnika();
+                                                            CzasPracy(mojpiekarnik._termostat._timer.GetCzas());
+                                                            mojpiekarnik.PokazStatusPiekarnika();
+                                                            break;
+                                                        case 2:
+                                                            //Console.WriteLine("podaj now¹ dlugoœæ:  ");
+                                                            //mojpiekarnik.Dlugosc = int.Parse(Console.ReadLine());
+                                                            break;
+                                                        case 3:   //default:
+                                                            break;
+
+                                                    }
+                                                }
+                                                while (g != 2);
+                                                break;
+                                            case 3:   //default:
+                                                break;
+                                            
+                                        }
+                                    }
+                                    while (f != 2);
+                                    break;
+                                case 4:
+                                    break;
+                            }
+                        }
+                        while (b != 4);
+
+                        break;
+                    case 2:
+                        Console.WriteLine("zmywarka dane");
+
+
+                        mojpiekarnik.PobierzWysokoscPiekarnika();
+                        break;
+                    case 3:
+                        Console.WriteLine("rysujemy ?");
+
+                        break;
+                    case 4:
+                        //int b = 0;
+                        //do
+                        //{
+                        //    Console.WriteLine(" podmenu status: ");
+                        //    Console.WriteLine(" < 1 > -piekarnik ");
+                        //    Console.WriteLine(" < 2 > -stolik ");
+                        //    Console.WriteLine(" < 3 > -puste ");
+                        //    Console.WriteLine(" < 4 > -wyjscie ");
+                        //    b = Int32.Parse(Console.ReadLine());
+                        //    switch (b)
+                        //    {
+                        //        case 1:
+                        //            mojazmywarka.PokazStatusMikrofali();
+                        //            break;
+                        //        case 2:
+                        //            mojpiekarnik.PokazStatusPiekarnika();
+                        //            break;
+                        //        case 3:
+
+                        //            break;
+                        //        case 4:
+                        //            break;
+                        //    }
+                        //}
+                        //while (b != 4);
+                        break;
+                    case 5:
+                        int d;
+                        do
+                        {
+                            Console.WriteLine("podmenu zmiana: ");
+                            Console.WriteLine(" < 1 > -piekarnik ");
+                            Console.WriteLine(" < 2 > -zmywarka ");
+                            Console.WriteLine(" < 3 > -puste");
+                            Console.WriteLine(" < 4 > -wyjscie ");
+                            d = int.Parse(Console.ReadLine());
+                            switch (d)
+                            {
+                                case 1:
+                                    int e;
+                                    do
+                                    {
+                                        Console.WriteLine("wybierz parametr piekarnika do zmiany");
+                                        Console.WriteLine("<1> wysokosc oparcia");
+                                        Console.WriteLine("<2> wysokosc nog");
+                                        Console.WriteLine("<3> dlugosc siedziska");
+                                        Console.WriteLine("<4> symbol do rysowania");
+                                        Console.WriteLine("<5> kolor");
+                                        Console.WriteLine("<6> wyjscie");
+
+                                        e = int.Parse(Console.ReadLine());
+
+                                        switch (e)
+                                        {
+                                            case 1:
+                                                Console.WriteLine("podaj now¹ wysokoœæ oparcia");
+                                                mojazmywarka.SzerokoscMikrofali = int.Parse(Console.ReadLine());
+                                                break;
+                                            case 2:
+                                                Console.WriteLine("podaj now¹ wysokosc nog");
+                                                mojazmywarka.GlebokoscMikrofali = int.Parse(Console.ReadLine());
+                                                break;
+                                            case 3:
+                                                Console.WriteLine("podaj nowa dlugosc siedziska");
+                                                mojazmywarka.SzerokoscMikrofali = int.Parse(Console.ReadLine());
+                                                break;
+                                            case 4:
+                                                Console.WriteLine("podaj inny symbol do rysowania");
+                                                mojazmywarka.KlasaEnergetyczna = Console.ReadLine();
+                                                break;
+                                            case 5:
+                                                Console.WriteLine("podaj inny kolor");
+                                                mojazmywarka.KolorMikrofali = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), Console.ReadLine(), true);
+                                                break;
+                                            case 6:
+                                                Console.WriteLine("koniec");
+                                                break;
+                                        }
+                                    }
+                                    while (e != 6);   //podmenu zmian w krzeœle
+                                    break;
+                                case 2:
+
+                                    break;
+                                case 3:
+                                    int g;
+                                    do
+                                    {
+                                        Console.WriteLine("<1> wysokosc stolika");
+                                        Console.WriteLine("<2> dlugoœc stolika");
+                                        Console.WriteLine("<3> symbol");
+                                        Console.WriteLine("<4> kolor");
+                                        Console.WriteLine("<5> wyjœcie");
+                                        g = int.Parse(Console.ReadLine());
+                                        switch (g)
+                                        {
+                                            case 1:
+                                                Console.WriteLine("podaj now¹ wysokoœæ stolika:  ");
+                                                mojpiekarnik.NowaWysokoscPiekarnika(int.Parse(Console.ReadLine()));
+                                                break;
+                                            case 2:
+                                                Console.WriteLine("podaj now¹ dlugoœæ stolika:  ");
+                                                mojpiekarnik.Dlugosc = int.Parse(Console.ReadLine());
+                                                break;
+                                            case 3:
+                                                Console.WriteLine("podaj nowy symbol: ");
+
+                                                break;
+                                            case 4:
+                                                Console.WriteLine("podaj inny kolor");
+                                                //mojpiekarnik.Kolor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), Console.ReadLine(), true);
+                                                break;
+                                            case 5:
+                                                break;
+                                        }
+                                    }
+                                    while (g != 4);
+                                    break;
+                                case 4:
+
+                                    break;
+                            }
+                        }
+                        while (d != 4);
+                        break;
+                    case 6:
+                        int h;
+                        do
+                        {
+                            Console.WriteLine("<1> piekarnik");
+                            Console.WriteLine("<2> zmywarka");
+                            Console.WriteLine("<3> puste");
+                            Console.WriteLine("<4> wyjscie");
+                            h = int.Parse(Console.ReadLine());
+                            switch (h)
+                            {
+                                case 1:
+
+                                    break;
+                                case 2:
+
+                                    break;
+                                case 3:
+
+                                    break;
+                                case 4:
+                                    break;
+                            }
+
+                        } while (h != 4);
+                        break;
+                    case 7:
+                        Console.WriteLine("KABOOOOOOOM! Naciœnij dowolny klawisz, by zakoñczyæ program.");
+                        Console.ReadKey();
+                        break;
+                }
+            } while (a != 7);
+        }
+  }
+}
